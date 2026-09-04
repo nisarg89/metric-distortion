@@ -9,13 +9,45 @@ permissions:
   contents: read
 
 jobs:
-  verify:
+  exact-certificates:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
-      - name: Verify the rational candidate
-        run: python3 verify_distortion.py candidate.json
+      - name: Test the generic Bernstein checker
+        run: python3 -B -m unittest discover -s tests -v
+      - name: Check the current frozen certificate
+        run: python3 -B certificate_distortion.py
+      - name: Check the lower-bound certificate
+        run: python3 -B certificate_lower_bound.py
+      - name: Check the previous frozen certificate
+        run: python3 -B old/certificate_distortion_v1.py
+
+  search-format-smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python3 -m pip install -r requirements.txt
+      - name: Produce and verify a tiny search candidate
+        run: |
+          python3 -B search_distortion.py \
+            --max-degree 1 --max-support-size 1 \
+            --grid-size 2 --refine-grid-size 2 --final-grid-size 2 \
+            --shortlist 1 \
+            --initial-samples 1 --local-starts 1 --maxiter 1 \
+            --refine-initial-samples 1 --refine-local-starts 1 \
+            --refine-maxiter 1 --global-shortlist 1 \
+            --global-initial-samples 1 --global-local-starts 1 \
+            --global-maxiter 1 --differential-iterations 1 \
+            --differential-population 1 \
+            --output /tmp/search-candidate.json
+          python3 -B verify_distortion.py /tmp/search-candidate.json \
+            --maximum-depth 8
