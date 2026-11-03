@@ -51,7 +51,7 @@ class LowerBoundTests(unittest.TestCase):
     def setUp(self):
         self.data = json.loads((ROOT/'data/lower-bound.json').read_text())
 
-    def test_v4_integer_inequality(self):
+    def test_integer_inequality(self):
         self.assertEqual(verify(self.data)['status'], 'verified')
 
     def test_changed_finite_gap_is_rejected(self):

@@ -1,7 +1,4 @@
-"""Direct polynomial checks for a finite charge family; no scalar-criterion reductions.
-Every residual is evaluated on its entire listed interval box.  This file has no
-root-monotonicity, E-breakpoint, small-mass, or large-mass analytical implication.
-"""
+"""Verify the fixed families of scalar polynomial inequalities on closed interval domains."""
 from pathlib import Path
 from fractions import Fraction as F
 from math import comb
@@ -13,7 +10,7 @@ from distortion_polynomials import Law, jH, jpsi, jHd
 
 ROOT=OUTPUT
 data=load_data('parameters.json')
-assert data['schema']=='metric-distortion-v4-parameters-v1'
+assert data['schema']=='metric-distortion-parameters-v1'
 law=Law(data)
 k=F(data['kappa']);C=F(data['C']);s=F(data['s']);ell=F(data['l']);b=F(data['b'])
 assert law.degrees==list(map(F,[1,2,32]))

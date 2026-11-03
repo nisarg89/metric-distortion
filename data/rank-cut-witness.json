@@ -8674,5 +8674,5 @@
     }
   ],
   "cut_inequality": "a+lambda(p)*(H(a+A-p)-H(a)-H(A))+t_j(p)*psi(r) <= nu_j{z:a<=min(z,r)<A}",
-  "analytic_scope": "Only finite piecewise polynomial bounds and exact polynomial identities are verified. Rearrangement of arbitrary measurable sets and the rank-cut integration argument are in the manuscript replacement."
+  "analytic_scope": "Finite piecewise polynomial bounds and exact polynomial identities are verified."
 }

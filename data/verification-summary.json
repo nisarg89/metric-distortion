@@ -1,30 +1,29 @@
 {
   "status": "verified",
-  "manuscript": "metric-distortion-v4.tex",
   "distortion": "213609/100000",
   "decimal_bound": "2.13609",
   "finite_polynomial_boxes": 729671,
   "additional_rank_cut_boxes": 421652,
   "inputs": {
     "finite-family-witness.json": "c7827c269f411d211d5ba34aa00d744eeae98371d164c5070f86464e0da7952c",
-    "lower-bound.json": "0ef150fd868103df2870852d56d61d20c67eb450c29bc6b374b05743a2cfba3a",
-    "parameters.json": "17704ce31e9461eb009c1504eef8aa050248dee54ea19de4438430a65ee41550",
-    "rank-cut-witness.json": "254f9b258108717be0baa2fb3bd937047c8e945433fac32f075e5fcfda8dd3ab"
+    "lower-bound.json": "47c710e92e49d10d117f427aad42133e9c76b540348dcd6d3d2412f6daea7f03",
+    "parameters.json": "938e6e5f0023d20d554c7fd64546abbed2f267f22a23623196f606277767ff08",
+    "rank-cut-witness.json": "07c708f3ee6a33a970796e8a22248e120430bd1de97f617b0f3829625c9093c9"
   },
   "code": {
     "audit_finite_witness.py": "38888bd7efadc2b22684ea2e6b9a4c1965715f3d788c225765d5be13f2a639cb",
-    "certificate_distortion.py": "cfbacc1f95cc620e222061c673c972780c945bd50495652225358d7a982c34ad",
-    "certificate_lower_bound.py": "0bfe70f41c0fb50cd594e7060431ac4cb8d6757491fd1f3f4cb91c68e03f82fa",
+    "certificate_distortion.py": "82f0903bb5e2d50758edf58a7d63174327f32515f0b5a2fae47859a0c4b727e3",
+    "certificate_lower_bound.py": "f733034b1eb042723e5493f7fc5a550030f7d5d1a61ef06f0d6058fb995d805d",
     "certificate_paths.py": "86bd4b28d77d617a257004beccc66ed69f0a895b2bcfe726f26bd1faaf00cd20",
     "distortion_polynomials.py": "7b24aad60aa09888c0df2603204dffbe9cd0d4f8caa1bfa32c4b7e4f19aa80fa",
     "finish_finite_certificate.py": "50d517762ec31b44cd5bf8a59ccbb0217a964ce119c05a3f32d79e1eaa3d961c",
-    "finish_rank_cut_certificate.py": "5580317c1cd0726fdf748b4f85de3b3bf4d0dccd160497a3101a32f90d323bda",
-    "finite_family_verifier.py": "1c087a7f6555d1c67b6219243ebe27619148fd9ef8cdff9651ad0c52ab0fa172",
+    "finish_rank_cut_certificate.py": "e134378a84aa951098cc2511db446e32ea34eb3f472e5dd0d67ab59607f706e1",
+    "finite_family_verifier.py": "34ed9b250568e75fc7f303585a0d092cef5dc13ce7e10008a44a548a39a48b9a",
     "intervals.py": "3bed1d2e18c342fa687aeced5f1ca216f40f4ef128e0c53ad133c771f017bcf3",
-    "verify_distortion.py": "8bf4ff1f0f1fa53d1b6cd1f0afc4a2abf74a5310783546ca02e0f00290de2be5",
-    "verify_rank_cut.py": "6b81742420bc28156d6c8fcb3bcd88077743f05a50d285391179ca9eeb2cdcf0",
+    "verify_distortion.py": "67582c1b02ab12b6a0a76d18173fbb14a3f1bee6125f0c446d7c3bdcf155fc99",
+    "verify_rank_cut.py": "2f6fc99d79032b22a64d38bd1e768261d78b235fae366282814ecdd198c50322",
     "verify_robustness_bound.py": "42a52dc7a2046d845b5536ef81dd04ade78ad96746e5ae576e5dfbff90f9d2df",
-    "verify_v3.py": "826946992b3abc641404871d2e367414db99c209cbdc3fddb742c00053fef2a7"
+    "verify_v3.py": "e08e9fcfd489e310d0efd9c06b4af2d2584c52ba25663bf56a490ba404abb01b"
   },
   "runtime": {
     "python": "3.14.7",

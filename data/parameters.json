@@ -600,7 +600,7 @@
       "145513/100000"
     ]
   ],
-  "schema": "metric-distortion-v4-parameters-v1",
+  "schema": "metric-distortion-parameters-v1",
   "b": "2840189/5000000",
   "bands": [
     [

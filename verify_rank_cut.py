@@ -1,8 +1,4 @@
-"""Polynomial certification for direct charging to random rank cuts.
-This verifies fixed stronger crossing residuals and exact polynomial cut laws
-while reusing unchanged, previously verified polynomial bounds.
-Every cutoff is read from the fixed rational witness; no root search is run.
-"""
+"""Verify density nonnegativity and the additional crossing polynomial bounds."""
 import finite_family_verifier as f
 from fractions import Fraction as F
 from pathlib import Path

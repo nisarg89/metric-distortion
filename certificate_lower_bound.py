@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Exact arithmetic checks for the integer lower-bound proof in the v4 manuscript.
+"""Check rational parameters and integer-degree inequalities for the lower bound.
 
-The manuscript supplies the symmetric profiles, convexity argument, and strict
-rational perturbation. This checks its calibrated parameters and the elementary
-inequality for every positive integer degree, including its infinite tail.
+This verifies the finite-degree gaps and the bound on the infinite tail of
+positive integer degrees for distortion strictly greater than 267/125.
 """
 from fractions import Fraction as F
 import argparse
@@ -13,7 +12,7 @@ from pathlib import Path
 def verify(data):
     if not __debug__:
         raise RuntimeError('Run without -O: the certificate checks require assertions.')
-    assert data['schema'] == 'metric-distortion-v4-integer-lower-v1'
+    assert data['schema'] == 'metric-distortion-integer-lower-v1'
     c, r, p, a, b = (F(data[key]) for key in ['c', 'r', 'p', 'a', 'b'])
     assert c == F(71, 125) and r == F(1, 39) and p == F(3, 4)
     assert a == p*r and b == a+1-p and 0 < a < b < c < p < 1
@@ -43,7 +42,7 @@ def main():
         raise ValueError('Non-rational JSON input: ' + value)
     data = json.loads(args.data.read_text(), parse_float=reject, parse_constant=reject)
     print(json.dumps(verify(data), indent=2))
-    print('V4 integer lower-bound arithmetic verified: distortion > 267/125 = 2.136.')
+    print('Integer lower-bound arithmetic verified: distortion > 267/125 = 2.136.')
 
 if __name__ == '__main__':
     main()

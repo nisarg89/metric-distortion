@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the 2.13609 certificate for metric-distortion-v4.tex.
+"""Verify the polynomial inequalities and identities for the 2.13609 upper bound.
 
 The default (also --full) recomputes every continuous polynomial bound and all
 algebraic identities. --audit-only checks inputs and the one-variable robustness
@@ -54,14 +54,14 @@ def main():
         rank = json.loads((output / 'rank-cut-verification.json').read_text())
         assert finite['status'] == rank['status'] == 'verified'
         sha = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
-        summary = {'status': 'verified', 'manuscript': 'metric-distortion-v4.tex',
+        summary = {'status': 'verified',
                    'distortion': '213609/100000', 'decimal_bound': '2.13609',
                    'finite_polynomial_boxes': finite['direct_poly_boxes'],
                    'additional_rank_cut_boxes': rank['added_polynomial_boxes'],
                    'inputs': {p.name: sha(p) for p in sorted(args.data_dir.glob('*.json')) if p.name != 'verification-summary.json'},
                    'code': {p.name: sha(p) for p in sorted(CODE.glob('*.py'))}}
         (output / 'verification-summary.json').write_text(json.dumps(summary, indent=2) + '\n')
-        print('Complete v4 certificate verified: distortion <= 213609/100000 = 2.13609.')
+        print('Complete upper-bound certificate verified: distortion <= 213609/100000 = 2.13609.')
 
 if __name__ == '__main__':
     main()

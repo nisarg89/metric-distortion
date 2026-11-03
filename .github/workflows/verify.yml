@@ -9,8 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  v4-certificates:
-    name: Current v4 certificate (2.13609)
+  current-certificates:
+    name: Current certificate (2.13609)
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -22,9 +22,9 @@ jobs:
       - run: python3 -m pip install -r requirements.txt
       - name: Test interval bounds and rejection of corrupted inputs
         run: python3 -B -m unittest discover -s tests -v
-      - name: Verify every v4 upper-bound polynomial domain
+      - name: Verify every upper-bound polynomial domain
         run: python3 -B certificate_distortion.py --full --output-dir verification-results
-      - name: Verify the v4 integer lower-bound arithmetic
+      - name: Verify the integer lower-bound arithmetic
         run: python3 -B certificate_lower_bound.py
 
   archived-certificates:

@@ -1,5 +1,5 @@
 {
-  "schema": "metric-distortion-v4-integer-lower-v1",
+  "schema": "metric-distortion-integer-lower-v1",
   "c": "71/125",
   "distortion_lower_bound": "267/125",
   "r": "1/39",

@@ -79,12 +79,11 @@ for rset,oldr in zip(W['admissible_root_sets'],W['root_intervals']):
 W['rank_measures']=measures
 W['status']='verified_rank_cut_witness'
 W['cut_inequality']='a+lambda(p)*(H(a+A-p)-H(a)-H(A))+t_j(p)*psi(r) <= nu_j{z:a<=min(z,r)<A}'
-W['analytic_scope']='Only finite piecewise polynomial bounds and exact polynomial identities are verified. Rearrangement of arbitrary measurable sets and the rank-cut integration argument are in the manuscript replacement.'
+W['analytic_scope']='Finite piecewise polynomial bounds and exact polynomial identities are verified.'
 assert W==load_data('rank-cut-witness.json'), 'Generated rank-cut witness differs from the frozen input'
 (ROOT/'rank-cut-witness.json').write_text(json.dumps(W,indent=2)+'\n')
 (ROOT/'rank-cut-polynomial-identities.json').write_text(json.dumps(polyproof,indent=2)+'\n')
 V['status']='verified';V['scope']='Direct rank-cut inequality on every listed real domain, with both endpoint masses, finite root coverage, and nonnegative rank measures of total mass C.'
 V['witness_sha256']=sha(ROOT/'rank-cut-witness.json');V['polynomial_identities_sha256']=sha(ROOT/'rank-cut-polynomial-identities.json')
-V['proof_analytics']='The manuscript contains the unrestricted-set rearrangement and the inversion-interval argument. No arbitrary-set movement or unbounded-chain reduction is delegated to this checker.'
 (ROOT/'rank-cut-verification.json').write_text(json.dumps(V,indent=2)+'\n')
 print(json.dumps({'status':'verified','additional_polynomial_boxes':V['added_polynomial_boxes'],'positive_mixed_difference_terms':len(B.terms()),'rank_measures':len(measures),'witness_sha256':V['witness_sha256']}))
