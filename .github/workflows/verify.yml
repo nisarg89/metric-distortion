@@ -1,4 +1,4 @@
-name: Exact verification
+name: Verify metric distortion 2.13609
 
 on:
   push:
@@ -9,26 +9,10 @@ permissions:
   contents: read
 
 jobs:
-  exact-certificates:
+  v4-certificates:
+    name: Current v4 certificate (2.13609)
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.11"
-      - name: Test the generic Bernstein checker
-        run: python3 -B -m unittest discover -s tests -v
-      - name: Check the current frozen certificate
-        run: python3 -B certificate_distortion.py
-      - name: Check the lower-bound certificate
-        run: python3 -B certificate_lower_bound.py
-      - name: Check the previous frozen certificate
-        run: python3 -B old/certificate_distortion_v1.py
-
-  search-format-smoke-test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -36,18 +20,28 @@ jobs:
           python-version: "3.11"
           cache: pip
       - run: python3 -m pip install -r requirements.txt
-      - name: Produce and verify a tiny search candidate
-        run: |
-          python3 -B search_distortion.py \
-            --max-degree 1 --max-support-size 1 \
-            --grid-size 2 --refine-grid-size 2 --final-grid-size 2 \
-            --shortlist 1 \
-            --initial-samples 1 --local-starts 1 --maxiter 1 \
-            --refine-initial-samples 1 --refine-local-starts 1 \
-            --refine-maxiter 1 --global-shortlist 1 \
-            --global-initial-samples 1 --global-local-starts 1 \
-            --global-maxiter 1 --differential-iterations 1 \
-            --differential-population 1 \
-            --output /tmp/search-candidate.json
-          python3 -B verify_distortion.py /tmp/search-candidate.json \
-            --maximum-depth 8
+      - name: Test interval bounds and rejection of corrupted inputs
+        run: python3 -B -m unittest discover -s tests -v
+      - name: Verify every v4 upper-bound polynomial domain
+        run: python3 -B certificate_distortion.py --full --output-dir verification-results
+      - name: Verify the v4 integer lower-bound arithmetic
+        run: python3 -B certificate_lower_bound.py
+
+  archived-certificates:
+    name: Archived v1 and v2 certificates
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: Test the archived generic Bernstein checker
+        working-directory: v2
+        run: python3 -B -m unittest discover -s tests -v
+      - name: Verify the archived v1 upper bound
+        run: python3 -B v1/certificate_distortion_v1.py
+      - name: Verify the archived v2 upper bound
+        run: python3 -B v2/certificate_distortion.py
+      - name: Verify the archived v2 lower-bound certificate
+        run: python3 -B v2/certificate_lower_bound.py

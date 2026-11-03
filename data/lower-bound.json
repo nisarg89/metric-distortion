@@ -1,0 +1,19 @@
+{
+  "schema": "metric-distortion-v4-integer-lower-v1",
+  "c": "71/125",
+  "distortion_lower_bound": "267/125",
+  "r": "1/39",
+  "p": "3/4",
+  "a": "1/52",
+  "b": "7/26",
+  "finite_gaps": [
+    "97/1625000",
+    "22093/5281250000"
+  ],
+  "tail_start": 3,
+  "tail_margin": "1/200",
+  "candidate_counts": [
+    126,
+    40
+  ]
+}
